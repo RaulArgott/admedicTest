@@ -23,7 +23,6 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <p>Hola amigues</p>
                 <div class="panel panel-bordered">
                     <!-- form start -->
                     <form role="form"
@@ -59,7 +58,33 @@
                                 <!-- GET THE DISPLAY OPTIONS -->
 
                             @endforeach
-
+                            <div class="table-responsive">
+                                <table id="dataTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Add
+                                            </th>
+                                            <th>
+                                                Producto
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($allProducts as $product)
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" value="{{ $product->id }}" name="product[]">
+                                                </td>
+                                                <td>
+                                                    {{ $product->name}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
@@ -109,7 +134,17 @@
 @stop
 
 @section('javascript')
+<script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
     <script>
+         var table = $('#dataTable').DataTable({!! json_encode(
+                    array_merge([
+                        "order" => 1,
+                        "language" => __('voyager::datatable'),
+                        "columnDefs" => [['targets' => -1, 'searchable' =>  false, 'orderable' => false]],
+                    ],
+                    config('voyager.dashboard.data_tables', []))
+                , true) !!});
+
         var params = {};
         var $file;
 

@@ -77,6 +77,9 @@
                                                     <input type="checkbox" value="{{ $product->id }}" name="product[]">
                                                 </td>
                                                 <td>
+                                                    {{ $product->code}}
+                                                </td>
+                                                <td>
                                                     {{ $product->name}}
                                                 </td>
                                             </tr>

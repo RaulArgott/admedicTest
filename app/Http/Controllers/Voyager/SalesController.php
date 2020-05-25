@@ -334,6 +334,8 @@ class SalesController extends VoyagerBaseController
 
         event(new BreadDataUpdated($dataType, $data));
 
+
+
         if (auth()->user()->can('browse', app($dataType->model_name))) {
             $redirect = redirect()->route("voyager.{$dataType->slug}.index");
         } else {
@@ -403,7 +405,7 @@ class SalesController extends VoyagerBaseController
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -416,6 +418,15 @@ class SalesController extends VoyagerBaseController
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
 
         event(new BreadDataAdded($dataType, $data));
+
+        if($request->product){
+            foreach ($request->product as $product){
+                \App\ProductSale::create([
+                    'product_id' => $product,
+                    'sale_id' => $data->id
+                ]);
+            }
+        }
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {

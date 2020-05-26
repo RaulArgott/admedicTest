@@ -6,6 +6,7 @@
 @extends('voyager::master')
 
 @section('css')
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
@@ -63,10 +64,22 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Add
+                                                ID
                                             </th>
                                             <th>
-                                                Producto
+                                                Code
+                                            </th>
+                                            <th>
+                                                Product
+                                            </th>
+                                            <th>
+                                                Price
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                Add
                                             </th>
                                         </tr>
                                     </thead>
@@ -74,7 +87,7 @@
                                         @foreach ($allProducts as $product)
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" value="{{ $product->id }}" name="product[]">
+                                                    {{ $product->id }}
                                                 </td>
                                                 <td>
                                                     {{ $product->code}}
@@ -82,12 +95,36 @@
                                                 <td>
                                                     {{ $product->name}}
                                                 </td>
+                                                <td>
+                                                    {{ $product->price }}
+                                                </td>
+                                                <td>
+                                                    <input type="number"  class="subtotals" value="1" min="1" max="{{ $product->stock }}">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" value="{{ $product->id }}" name="product[]" class="cart">
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <section class="container content-section">
+                                <div class="cart-total">
+                                    <h3>
+                                    <strong class="cart-total-title">Subotal</strong>
+                                    <span class="cart-total-price">$<span id="subtotal">0</span></span><br>
+                                    <strong class="cart-total-title">IVA</strong>
+                                    <span class="cart-total-price">$<span id="iva">0</span></span><br>
+                                    <strong class="cart-total-title">Total</strong>
+                                    <span class="cart-total-price">$<span id="total">0</span></span><br>
+                                    </h3>
+                                </div>
+                            </section>
+                            <div class="added" id="added"></div>
+                            <div id="totals"></div>
+
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
@@ -139,6 +176,46 @@
 @section('javascript')
 <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
     <script>
+        //var row = document.getElementById("dataTable").rows[1].cells.item(0);
+        //console.log(row);
+        var count = 0;
+        var subtot = document.getElementById('subtotal');
+        var ivah = document.getElementById('iva');
+        var totalbig = document.getElementById('total');
+        var total = parseFloat(subtot.innerText);
+        var added = document.getElementById("added");
+        var products = document.getElementsByClassName("cart");
+        var totals = document.getElementById("totals");
+        for (let index = 0; index < products.length; index++) {
+            products[index].addEventListener( 'change', function() {
+                var currentRow = products[index].closest('tr');
+                subtotal = currentRow.cells.item(4).firstElementChild.value * parseFloat(currentRow.cells.item(3).innerText);
+                console.log(subtotal);
+                if(this.checked) {
+                    total = total + subtotal;
+                    currentRow.cells.item(4).firstElementChild.disabled = true;
+                    var node = document.createElement("input");
+                    node.setAttribute('name', 'stock['+currentRow.cells.item(0).innerText+']');
+                    node.setAttribute('id', currentRow.cells.item(0).innerText);
+                    node.setAttribute('value',currentRow.cells.item(4).firstElementChild.value.toString());
+                    node.setAttribute('type','hidden');
+                    added.appendChild(node);
+
+                } else {
+                    total = total - subtotal;
+                    currentRow.cells.item(4).firstElementChild.disabled = false;
+                    node = document.getElementById(currentRow.cells.item(0).innerText);
+                    node.remove();
+                }
+                iva = total*0.16;
+                totalR = iva+total;
+                subtot.innerHTML = total+"";
+                ivah.innerHTML = iva+"";
+                totalbig.innerHTML = totalR+"";
+                totals.innerHTML = '<input type="hidden" name="total" value="'+totalR+'"><input type="hidden" name="iva" value="'+iva+'"><input type="hidden" name="subtotal" value="'+total+'">';
+
+            });
+        }
          var table = $('#dataTable').DataTable({!! json_encode(
                     array_merge([
                         "order" => 1,

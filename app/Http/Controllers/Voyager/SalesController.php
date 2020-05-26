@@ -420,13 +420,19 @@ class SalesController extends VoyagerBaseController
         event(new BreadDataAdded($dataType, $data));
 
         if($request->product){
-            foreach ($request->product as $product){
+            foreach ($request->product as $k => $product){
+                $p = \App\Product::find($product);
+                $p->stock = $p->stock - $request->stock[$product];
+                $p->save();
                 \App\ProductSale::create([
                     'product_id' => $product,
                     'sale_id' => $data->id
                 ]);
+
             }
         }
+
+
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {

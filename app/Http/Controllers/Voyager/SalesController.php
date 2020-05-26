@@ -237,13 +237,19 @@ class SalesController extends VoyagerBaseController
         // Eagerload Relations
         $this->eagerLoadRelations($dataTypeContent, $dataType, 'read', $isModelTranslatable);
 
+        $sale = \App\Sale::find($id);
+        $info = \App\ProductSale::where('sale_id',$id)->get();
+
+
         $view = 'voyager::bread.read';
 
         if (view()->exists("voyager::$slug.read")) {
             $view = "voyager::$slug.read";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','sale', 'info'));
+        // $pdf = \Barryvdh\DomPDF\Facade::loadView($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','sale', 'info'));
+        // return $pdf->download('itsolutionstuff.pdf');
     }
 
     //***************************************
@@ -392,8 +398,9 @@ class SalesController extends VoyagerBaseController
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
         }
-        $allProducts = \App\Product::all();
+        $allProducts = \App\Product::where('stock','>',0)->get();
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allProducts'));
+
     }
 
     /**
@@ -426,11 +433,14 @@ class SalesController extends VoyagerBaseController
                 $p->save();
                 \App\ProductSale::create([
                     'product_id' => $product,
+                    'quantity' => $request->stock[$product],
                     'sale_id' => $data->id
                 ]);
 
             }
         }
+
+
 
 
 

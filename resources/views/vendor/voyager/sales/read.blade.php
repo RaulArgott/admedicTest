@@ -43,7 +43,7 @@
                     @endforeach
                     <p> {{ $sale->created_at }}  </p>
                     <p> <h4> <strong>Sale ID:</strong> {{ $sale->id }} </h4></p>
-                    <table style="border: hidden" class="table table-sm">
+                    <table style="border: hidden" class="table table-sm" id="myTable">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -51,7 +51,7 @@
                                 <th>Price</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
                     @foreach ($sale->products as $k => $product)
                     <tr>
                         <td>{{ $product->name }}</td>
@@ -73,9 +73,18 @@
                             <h5>{{ $sale->total }}</h5>
                         </td>
                     </tr>
+                </tbody>
                     </table>
 
                     <p> <strong>Attended:</strong> {{ $sale->user->name }} </p>
+
+
+                    <div class="print">
+                        <a href="{{ route('print', ['sale' => $sale] )}}" class="btn btn-info">
+                            <span class="icon voyager-book-download"></span>
+                            Export
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,6 +136,7 @@
 
             $('#delete_modal').modal('show');
         });
+
 
     </script>
 @stop

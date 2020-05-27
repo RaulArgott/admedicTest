@@ -18,4 +18,9 @@ class ExportPDF extends Controller
         $pdf = \PDF::loadView('products', compact('products'));
         return $pdf->download('products.pdf');
     }
+    public function loginspdf(){
+        $logins = \App\Login::all();
+        $pdf = \PDF::loadView('attendance', compact('logins'));
+        return $pdf->download('attendance.pdf');
+    }
 }

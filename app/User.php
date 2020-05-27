@@ -18,7 +18,9 @@ class User extends \TCG\Voyager\Models\User
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
+    public function role(){
+        return $this->belongsTo(\TCG\Voyager\Models\Role::class);
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

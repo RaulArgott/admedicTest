@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Voyager::routes();
 Route::get('/pdf/{sale}', 'ExportPDF@invoice')->name('print');
-Route::get('/productspdf', 'ExportPDF@productspdf')->name('productspdf');
+Route::get('/loginspdf', 'ExportPDF@productspdf')->name('productspdf');
+Route::get('/loginspdf', 'ExportPDF@loginspdf')->name('loginspdf');

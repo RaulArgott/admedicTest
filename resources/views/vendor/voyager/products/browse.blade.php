@@ -34,7 +34,7 @@
         @endforeach
         @include('voyager::multilingual.language-selector')
 
-            <a href="{{ route('productspdf') }}" class="btn btn-info btn-add-new" target="_blank">
+            <a href="" class="btn btn-info btn-add-new" target="_blank">
                 <span class="icon voyager-book-download"></span>
                 Export
             </a>

@@ -12,4 +12,8 @@ class POS extends Controller
         $products = Product::where('stock','>','0')->get();
         return \Response::json($products);
     }
+    public function cart(Request $request){
+        $users = json_decode($request->json()->all());
+        return response()->json($users);
+    }
 }

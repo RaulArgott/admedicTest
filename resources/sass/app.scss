@@ -13,8 +13,9 @@ tfoot input {
     //background-color: lightblue;
     text-align: center;
   }
-  .myDiv {
-    width: 60%;
+  .myDiv1 {
+    position: relative;
+    width: 80%;
     height: 60px;
     //border: 5px outset red;
     //background-color: lightblue;
@@ -23,8 +24,9 @@ tfoot input {
   .myDiv2 {
     position: absolute;
     top: 0px;
-    right: 100;
-    width: 600px;
-    height: 100%;
+    //right: -110;
+    left: 75%;
+    width: 20%;
+    height: 90%;
     //border: 3px solid #73AD21;
   }

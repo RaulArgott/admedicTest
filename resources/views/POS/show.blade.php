@@ -5,6 +5,8 @@
 <script src="/js/app.js"></script>
 
 <h1>Hola</h1>
+<div class="myDiv">
+<div class="myDiv1">
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
@@ -16,9 +18,9 @@
     <tbody>
         @foreach($products as $product)
         <tr>
-            <td>{{$product->name}}</td>
+            <td class="shop-item-title">{{$product->name}}</td>
             <td>{{$product->code}}</td>
-            <td>añadir al carrito</td>
+            <td><button class="shop-item-button"></button></td>
         </tr>
         @endforeach
     </tbody>
@@ -30,6 +32,9 @@
         </tr>
     </tfoot>
 </table>
+</div>
+
+<div class="myDiv2">
 <section class="container content-section">
     <h2 class="section-header">CART</h2>
     <div class="cart-row">
@@ -40,7 +45,6 @@
     <div class="cart-items">
     <div class="cart-row">
             <div class="cart-item cart-column">
-                
                 <span class="cart-item-title">T-Shirt blue</span>
             </div>
             <span class="cart-price cart-column">$29.99</span>
@@ -51,7 +55,6 @@
         </div>
         <div class="cart-row">
             <div class="cart-item cart-column">
-                <img class="cart-item-image" src="" width="100" height="100">
                 <span class="cart-item-title">T-Shirt</span>
             </div>
             <span class="cart-price cart-column">$19.99</span>
@@ -62,7 +65,6 @@
         </div>
         <div class="cart-row">
             <div class="cart-item cart-column">
-                <img class="cart-item-image" src="" width="100" height="100">
                 <span class="cart-item-title">Album 3</span>
             </div>
             <span class="cart-price cart-column">$9.99</span>
@@ -82,4 +84,5 @@
     </div>
     <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
 </section>
-
+</div>
+</div>

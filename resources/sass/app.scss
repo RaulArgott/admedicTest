@@ -5,3 +5,26 @@ tfoot input {
     padding: 3px;
     box-sizing: border-box;
 }
+
+.myDiv {
+    width: 70%;
+    height: 60px;
+    //border: 5px outset red;
+    //background-color: lightblue;
+    text-align: center;
+  }
+  .myDiv {
+    width: 60%;
+    height: 60px;
+    //border: 5px outset red;
+    //background-color: lightblue;
+    text-align: center;
+  }
+  .myDiv2 {
+    position: absolute;
+    top: 0px;
+    right: 100;
+    width: 600px;
+    height: 100%;
+    //border: 3px solid #73AD21;
+  }

@@ -4,3 +4,23 @@ tfoot input {
   box-sizing: border-box;
 }
 
+.myDiv {
+  width: 70%;
+  height: 60px;
+  text-align: center;
+}
+
+.myDiv {
+  width: 60%;
+  height: 60px;
+  text-align: center;
+}
+
+.myDiv2 {
+  position: absolute;
+  top: 0px;
+  right: 100;
+  width: 600px;
+  height: 100%;
+}
+

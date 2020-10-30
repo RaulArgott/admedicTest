@@ -19336,7 +19336,24 @@ $(document).ready(function () {
     var button = removeCartItemButtons[i];
     button.addEventListener('click', removeCartItem);
   }
+
+  var quantityInputs = document.getElementsByClassName('cart-quantity-input');
+
+  for (var i = 0; i < quantityInputs.length; i++) {
+    var input = quantityInputs[i];
+    input.addEventListener('change', quanityChange);
+  }
 });
+
+function quanityChange(event) {
+  var input = event.target;
+
+  if (isNaN(input.value) || input.value <= 0) {
+    input.value = 1;
+  }
+
+  updateCarTotal();
+}
 
 function removeCartItem(event) {
   var buttonClicked = event.target;
@@ -19358,6 +19375,7 @@ function updateCarTotal() {
     total = total + price * quantity;
   }
 
+  total = Math.round(total * 100) / 100;
   document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
 }
 

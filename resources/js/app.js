@@ -1,2 +1,2 @@
 require('./bootstrap');
-require('/pos.js');
+require('./pos.js');

@@ -6,6 +6,7 @@
 
 <h1>Hola</h1>
 <div class="myDiv">
+
 <div class="myDiv1">
 <table id="example" class="display" style="width:100%">
     <thead>
@@ -13,7 +14,7 @@
             <th>Producto</th>
             <th>Codigo</th>
             <th>Categoria</th>
-            <th>Presio</th>
+            <th>Precio</th>
             <th>Añadir a Carrito</th>
         </tr>
     </thead>
@@ -21,9 +22,9 @@
         @foreach($products as $product)
         <tr>
             <td class="shop-item-title">{{$product->name}}</td>
-            <td>{{$product->code}}</td>
-            <td>{{$product->category->name}}</td>
-            <td>{{$product->price}}</td>
+            <td class="shop-item-code">{{$product->code}}</td>
+            <td class="shop-item-category">{{$product->category->name}}</td>
+            <td class="shop-item-price">{{$product->price}}</td>
             <td><button class="shop-item-button">Añadir</button></td>
         </tr>
         @endforeach

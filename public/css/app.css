@@ -5,14 +5,16 @@ tfoot input {
 }
 
 .myDiv {
-  width: 70%;
-  height: 60px;
+  width: 99%;
+  height: 90%;
+  border: 5px outset red;
+  background-image: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg");
   text-align: center;
 }
 
 .myDiv1 {
   position: relative;
-  width: 80%;
+  width: 70%;
   height: 60px;
   text-align: center;
 }

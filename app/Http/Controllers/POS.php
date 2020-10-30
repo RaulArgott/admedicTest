@@ -13,7 +13,11 @@ class POS extends Controller
         return view('POS.show',compact('products'));
     }
     public function cart(Request $request){
-        $users = json_decode($request->json()->all());
+        $products = json_decode($request->json()->all());
         return response()->json($users);
+    }
+    public function cartSell(Request $request){
+        $products = json_decode($request->json()->all());
+        
     }
 }

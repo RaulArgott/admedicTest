@@ -1,5 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 <style>
     tfoot input {
         width: 100%;
@@ -13,6 +14,8 @@
         <tr>
             <th>producto</th>
             <th>code</th>
+            <th></th>
+            <th>add</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +23,7 @@
         <tr>
             <td>{{$product->name}}</td>
             <td>{{$product->code}}</td>
+            <td>añadir al carrito</td>
         </tr>
         @endforeach
     </tbody>

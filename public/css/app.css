@@ -10,8 +10,9 @@ tfoot input {
   text-align: center;
 }
 
-.myDiv {
-  width: 60%;
+.myDiv1 {
+  position: relative;
+  width: 80%;
   height: 60px;
   text-align: center;
 }
@@ -19,8 +20,8 @@ tfoot input {
 .myDiv2 {
   position: absolute;
   top: 0px;
-  right: 100;
-  width: 600px;
-  height: 100%;
+  left: 75%;
+  width: 20%;
+  height: 90%;
 }
 

@@ -22,7 +22,8 @@ $(document).ready(function(){
 function addToCartClicked(event){
     var button = event.target
     var shopItem = button.parentElement.parentElement
-    var tittle = shopItem.getElementsByClassName('shop-item-title')[0].innerText
+    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
+    console.log(title)
 }
 
 function quanityChange(event){

@@ -19355,7 +19355,8 @@ $(document).ready(function () {
 function addToCartClicked(event) {
   var button = event.target;
   var shopItem = button.parentElement.parentElement;
-  var tittle = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+  var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+  console.log(title);
 }
 
 function quanityChange(event) {
@@ -19443,8 +19444,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\YBRIONES\Desktop\Admedic\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\YBRIONES\Desktop\Admedic\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/argott/www/laravel_ps/admedicTest/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/argott/www/laravel_ps/admedicTest/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

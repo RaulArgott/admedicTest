@@ -10,7 +10,7 @@ class POS extends Controller
 {
     public function show(){
         $products = Product::where('stock','>','0')->get();
-        return \Response::json($products);
+        return view('POS.show',compact('products'));
     }
     public function cart(Request $request){
         $users = json_decode($request->json()->all());

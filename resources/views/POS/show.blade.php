@@ -20,7 +20,7 @@
         <tr>
             <td class="shop-item-title">{{$product->name}}</td>
             <td>{{$product->code}}</td>
-            <td><button class="shop-item-button"></button></td>
+            <td><button class="shop-item-button">Añadir</button></td>
         </tr>
         @endforeach
     </tbody>

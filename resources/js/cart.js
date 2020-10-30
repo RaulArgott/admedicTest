@@ -23,6 +23,10 @@ function addToCartClicked(event){
     var button = event.target
     var shopItem = button.parentElement.parentElement
     var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
+    var code = shopItem.getElementsByClassName('shop-item-code')[0].innerText
+    var category = shopItem.getElementsByClassName('shop-item-cat')[0].innerText
+    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
+    
     console.log(title)
 }
 

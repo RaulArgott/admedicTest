@@ -19285,6 +19285,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./pos.js */ "./resources/js/pos.js");
 
+__webpack_require__(/*! ./cart.js */ "./resources/js/cart.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19316,6 +19318,48 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/cart.js":
+/*!******************************!*\
+  !*** ./resources/js/cart.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  var removeCartItemButtons = document.getElementsByClassName('btn btn-danger');
+  console.log(removeCartItemButtons);
+
+  for (var i = 0; i < removeCartItemButtons.length; i++) {
+    var button = removeCartItemButtons[i];
+    button.addEventListener('click', removeCartItem);
+  }
+});
+
+function removeCartItem(event) {
+  var buttonClicked = event.target;
+  buttonClicked.parentElement.parentElement.remove();
+  updateCarTotal();
+}
+
+function updateCarTotal() {
+  var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+  var cartRows = cartItemContainer.getElementsByClassName('cart-row');
+  var total = 0;
+
+  for (var i = 0; i < cartRows.length; i++) {
+    var cartRow = cartRows[i];
+    var priceElement = cartRow.getElementsByClassName('cart-price')[0];
+    var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
+    var price = parseFloat(priceElement.innerText.replace('$', ''));
+    var quantity = quantityElement.value;
+    total = total + price * quantity;
+  }
+
+  document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
+}
 
 /***/ }),
 

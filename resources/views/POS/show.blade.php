@@ -76,6 +76,10 @@
         <strong class="cart-total-title">Total</strong>
         <span class="cart-total-price">$39.97</span>
     </div>
+    <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">$39.97</span>
+    </div>
     <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
 </section>
 

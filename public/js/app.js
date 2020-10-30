@@ -19343,7 +19343,20 @@ $(document).ready(function () {
     var input = quantityInputs[i];
     input.addEventListener('change', quanityChange);
   }
+
+  var addToCartButtons = document.getElementsByClassName('shop-item-button');
+
+  for (var i = 0; i < addToCartButtons.length; i++) {
+    var button = addToCartButtons[i];
+    button.addEventListener('click', addToCartClicked);
+  }
 });
+
+function addToCartClicked(event) {
+  var button = event.target;
+  var shopItem = button.parentElement.parentElement;
+  var tittle = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+}
 
 function quanityChange(event) {
   var input = event.target;

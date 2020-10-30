@@ -5,12 +5,25 @@ $(document).ready(function(){
         var button = removeCartItemButtons[i]
         button.addEventListener('click', removeCartItem)
     }
+
     var quantityInputs = document.getElementsByClassName('cart-quantity-input')
     for(var i=0; i< quantityInputs.length; i++){
         var input = quantityInputs[i]
         input.addEventListener('change',quanityChange)
     }
+
+    var addToCartButtons = document.getElementsByClassName('shop-item-button')
+    for(var i=0; i< addToCartButtons.length; i++){
+        var button = addToCartButtons[i]
+        button.addEventListener('click', addToCartClicked)
+    }
 })
+
+function addToCartClicked(event){
+    var button = event.target
+    var shopItem = button.parentElement.parentElement
+    var tittle = shopItem.getElementsByClassName('shop-item-title')[0].innerText
+}
 
 function quanityChange(event){
     var input = event.target
@@ -25,6 +38,7 @@ function removeCartItem(event){
     buttonClicked.parentElement.parentElement.remove()
     updateCarTotal()
 }
+
 function updateCarTotal(){
     var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')

@@ -17,6 +17,8 @@ $(document).ready(function(){
         var button = addToCartButtons[i]
         button.addEventListener('click', addToCartClicked)
     }
+    var cartSubmit = document.getElementById('cart-submit')
+    cartSubmit.addEventListener('click',postCart)
 })
 
 function addToCartClicked(event){
@@ -40,23 +42,23 @@ function addItemToCart(item){
     var cartRow = document.createElement('div')
     cartRow.classList.add('cart-row')
     var cartItems = document.getElementsByClassName('cart-items')[0]
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
-    for (let index = 0; index < cartItemNames.length; index++) {
-        if(cartItemNames[index].innerText == item[0]){
+    var cartItemIDs = cartItems.getElementsByClassName('cart-item-id')
+    for (let index = 0; index < cartItemIDs.length; index++) {
+        if(cartItemIDs[index].value == item[0]){
             alert('Este articulo ya se encuentra en el carrito')
             return
         }
     }
     var cartRowContents =  `
-        <div class="cart-item cart-column">
-            <span class="cart-item-title">${item[1]}</span>
-        </div>
-        <span class="cart-price cart-column">${item[5]}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1" max="${item[6]}" >
-            <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>
-        </div>`
+            <input class="cart-item-id" type="number" value="${item[0]}" hidden/>
+            <div class="cart-item cart-column">
+                <span class="cart-item-title">${item[1]}</span>
+            </div>
+            <span class="cart-price cart-column">${item[5]}</span>
+            <div class="cart-quantity cart-column">
+                <input class="cart-quantity-input" type="number" value="1" max="${item[6]}" >
+                <button class="btn btn-danger" type="button">REMOVE</button>
+            </div>`
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click',removeCartItem)
@@ -91,7 +93,22 @@ function updateCarTotal(){
     }
     subtotal = Math.round(subtotal * 100) / 100
     document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+    document.getElementById('cart-subtotal').setAttribute('value',subtotal)
     var total = subtotal +(subtotal*0.16)
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+    document.getElementById('cart-total').setAttribute('value',total)
+
+}
+
+function postCart(){
+    $.ajax({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        type: "POST",
+        url: "/POS/cart",
+        dataType: 'json',
+        data: {
+            'nombre':'hola'
+        }
+    });
 }

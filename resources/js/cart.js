@@ -22,12 +22,39 @@ $(document).ready(function(){
 function addToCartClicked(event){
     var button = event.target
     var shopItem = button.parentElement.parentElement
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
-    var code = shopItem.getElementsByClassName('shop-item-code')[0].innerText
-    var category = shopItem.getElementsByClassName('shop-item-cat')[0].innerText
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
-    
-    console.log(title)
+    var item = [
+        shopItem.getElementsByClassName('shop-item-title')[0].innerText,
+        shopItem.getElementsByClassName('shop-item-code')[0].innerText,
+        shopItem.getElementsByClassName('shop-item-category')[0].innerText,
+        shopItem.getElementsByClassName('shop-item-price')[0].innerText
+    ]
+    addItemToCart(item)
+    updateCarTotal()
+}
+
+function addItemToCart(item){
+    var cartRow = document.createElement('div')
+    cartRow.classList.add('cart-row')
+    var cartItems = document.getElementsByClassName('cart-items')[0]
+    var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+    for (let index = 0; index < cartItemNames.length; index++) {
+        if(cartItemNames[index].innerText == item[0]){
+            alert('Este articulo ya se encuentra en el carrito')
+            return
+        }
+    }
+    var cartRowContents =  `
+        <div class="cart-item cart-column">
+            <span class="cart-item-title">${item[0]}</span>
+        </div>
+        <span class="cart-price cart-column">${item[3]}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1">
+            <button class="btn btn-danger" type="button">REMOVE</button>
+        </div>
+        </div>`
+        cartRow.innerHTML = cartRowContents
+        cartItems.append(cartRow)
 }
 
 function quanityChange(event){

@@ -19350,9 +19350,6 @@ $(document).ready(function () {
     var button = addToCartButtons[i];
     button.addEventListener('click', addToCartClicked);
   }
-
-  var cartSubmit = document.getElementById('cart-submit');
-  cartSubmit.addEventListener('click', postCart);
 });
 
 function addToCartClicked(event) {
@@ -19421,20 +19418,6 @@ function updateCarTotal() {
   total = Math.round(total * 100) / 100;
   document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
   document.getElementById('cart-total').setAttribute('value', total);
-}
-
-function postCart() {
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    type: "POST",
-    url: "/POS/cart",
-    dataType: 'json',
-    data: {
-      'nombre': 'hola'
-    }
-  });
 }
 
 /***/ }),

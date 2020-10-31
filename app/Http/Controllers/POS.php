@@ -13,9 +13,6 @@ class POS extends Controller
         return view('POS.show',compact('products'));
     }
     public function cart(Request $request){
-        $input = $request->all();
-        \Log::info($input);
-   
-        return view('POS.cart');
+        return response()->json(["success"=>"true"]);
     }
 }

@@ -19,4 +19,4 @@ Route::get('/pdf/{sale}', 'ExportPDF@invoice')->name('print');
 Route::get('/loginspdf', 'ExportPDF@productspdf')->name('productspdf');
 Route::get('/loginspdf', 'ExportPDF@loginspdf')->name('loginspdf');
 Route::get('/POS','POS@show');
-Route::post('/POS/cart','POS@cart')->name('postCart');
+Route::post('/POS','POS@cart')->name('postCart');

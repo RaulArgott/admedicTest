@@ -91,16 +91,22 @@
 
 </body>
 <script>
+
 $(document).ready(function() {
-    $(".cart-submit").click(function(e) {
-        $.ajax({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            type: "POST",
-            url: "/POS/cart",
-            dataType: 'json',
-            data: {
-                'nombre':'hola'
+    $("#cart-submit").click(function(e) {  
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
             }
+        });      
+        $.ajax({
+            url: "{{route('postCart')}}",
+            type: "POST",
+            data: {"item_id" : "1" },
+            success: function( data ) {
+                location.reload();
+            },
+            error: function(ts) { alert(ts.responseText) }    
         });
     });
 });

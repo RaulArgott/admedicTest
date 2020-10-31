@@ -5,7 +5,7 @@
 <script src="/js/app.js"></script>
 
 <div class="myDiv3">
-<h1>Hola</h1>
+
 </div>
 
 <div class="myDiv">

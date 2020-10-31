@@ -11,23 +11,27 @@ tfoot input {
     height: 90%;
     //border: 5px outset red;
     background-color: #D4F8F1;
+    background: linear-gradient(#D4F8F1, #eee);
     text-align: center;
   }
   .myDiv1 {
     position: relative;
     width: 70%;
     height: 60px;
+    left: 3%;
+    top: 3%;
     //border: 5px outset red;
     //background-color: lightblue;
     text-align: center;
   }
   .myDiv2 {
     position: absolute;
-    top: 80px;
+    top: 0px;
     //right: -110;
     left: 75%;
-    width: 20%;
-    height: 88%;
+    width: 24%;
+    height: 100%;
+    background: linear-gradient(#6B8081, #eee);
     //border: 3px solid #73AD21;
   }
 
@@ -36,7 +40,7 @@ tfoot input {
     //right: -110;
     width: 99%;
     height: 10%;
-    background-image: url("https://us.123rf.com/450wm/nadiinko/nadiinko1705/nadiinko170500041/78263147-oftalmolog%C3%ADa-modelo-incons%C3%BAtil-de-la-atenci%C3%B3n-sanitaria-de-los-ojos-fondo-m%C3%A9dico-del-vector-del-color-azul-lent.jpg?ver=6");  
+    background: linear-gradient(#06747B, #2D9CDB);
     //border: 3px solid #73AD21;
   }
 

@@ -14,30 +14,39 @@
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
+            <th style="display:none">ID</th>
             <th>Producto</th>
             <th>Codigo</th>
             <th>Categoria</th>
+            <th>Departamento</th>
             <th>Precio</th>
+            <th>Stock</th>
             <th>Añadir a Carrito</th>
         </tr>
     </thead>
     <tbody align="center">
         @foreach($products as $product)
         <tr>
+            <td class="shop-item-id" style="display:none">{{$product->id}}</td>
             <td class="shop-item-title">{{$product->name}}</td>
             <td class="shop-item-code">{{$product->code}}</td>
             <td class="shop-item-category">{{$product->category->name}}</td>
+            <td class="shop-item-deparment">{{$product->deparment->name}}</td>
             <td class="shop-item-price">${{$product->price}}</td>
+            <td class="shop-item-stock">{{$product->stock}}</td>
             <td><button class="shop-item-button">Añadir</button></td>
         </tr>
         @endforeach
     </tbody>
     <tfoot>
         <tr>
+            <th style="display:none">ID</th>
             <th>Nombre</th>
             <th>Codigo</th>
             <th>Categoria</th>
+            <th>Departamento</th>
             <th>Precio</th>
+            <th>Stock</th>
             <th style="display:none">Añadir</th>
         </tr>
     </tfoot>
@@ -54,6 +63,10 @@
     </div>
     <div class="cart-items">
     
+    </div>
+    <div class="cart-subtotal">
+        <strong class="cart-subtotal-title">Subotal</strong>
+        <span class="cart-subtotal-price">$0</span>
     </div>
     <div class="cart-total">
         <strong class="cart-total-title">Total</strong>

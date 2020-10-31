@@ -23,11 +23,15 @@ function addToCartClicked(event){
     var button = event.target
     var shopItem = button.parentElement.parentElement
     var item = [
+        shopItem.getElementsByClassName('shop-item-id')[0].innerText,
         shopItem.getElementsByClassName('shop-item-title')[0].innerText,
         shopItem.getElementsByClassName('shop-item-code')[0].innerText,
         shopItem.getElementsByClassName('shop-item-category')[0].innerText,
-        shopItem.getElementsByClassName('shop-item-price')[0].innerText
+        shopItem.getElementsByClassName('shop-item-deparment')[0].innerText,
+        shopItem.getElementsByClassName('shop-item-price')[0].innerText,
+        shopItem.getElementsByClassName('shop-item-stock')[0].innerText
     ]
+    console.log(item)
     addItemToCart(item)
     updateCarTotal()
 }
@@ -45,11 +49,11 @@ function addItemToCart(item){
     }
     var cartRowContents =  `
         <div class="cart-item cart-column">
-            <span class="cart-item-title">${item[0]}</span>
+            <span class="cart-item-title">${item[1]}</span>
         </div>
-        <span class="cart-price cart-column">${item[3]}</span>
+        <span class="cart-price cart-column">${item[5]}</span>
         <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
+            <input class="cart-quantity-input" type="number" value="1" max="${item[6]}" >
             <button class="btn btn-danger" type="button">REMOVE</button>
         </div>
         </div>`
@@ -76,15 +80,18 @@ function removeCartItem(event){
 function updateCarTotal(){
     var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-    var total = 0
+    var subtotal = 0
     for(var i = 0; i<cartRows.length; i++){
         var cartRow = cartRows[i]
         var priceElement = cartRow.getElementsByClassName('cart-price')[0]
         var quantityElement  = cartRow.getElementsByClassName('cart-quantity-input')[0]
         var price = parseFloat(priceElement.innerText.replace('$',''))
         var quantity = quantityElement.value
-        total = total + (price * quantity)        
+        subtotal = subtotal + (price * quantity)        
     }
+    subtotal = Math.round(subtotal * 100) / 100
+    document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+    var total = subtotal +(subtotal*0.16)
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
 }

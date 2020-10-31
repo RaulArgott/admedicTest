@@ -362,6 +362,24 @@ body {
   font-size: 1.1em;
 }
 
+.cart-subtotal {
+  text-align: end;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.cart-subtotal-title {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: black;
+  margin-right: 20px;
+}
+
+.cart-subtotal-price {
+  color: #333;
+  font-size: 1.1em;
+}
+
 .btn-purchase {
   display: block;
   margin: 40px auto 80px auto;

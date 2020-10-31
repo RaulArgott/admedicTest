@@ -19355,7 +19355,8 @@ $(document).ready(function () {
 function addToCartClicked(event) {
   var button = event.target;
   var shopItem = button.parentElement.parentElement;
-  var item = [shopItem.getElementsByClassName('shop-item-title')[0].innerText, shopItem.getElementsByClassName('shop-item-code')[0].innerText, shopItem.getElementsByClassName('shop-item-category')[0].innerText, shopItem.getElementsByClassName('shop-item-price')[0].innerText];
+  var item = [shopItem.getElementsByClassName('shop-item-id')[0].innerText, shopItem.getElementsByClassName('shop-item-title')[0].innerText, shopItem.getElementsByClassName('shop-item-code')[0].innerText, shopItem.getElementsByClassName('shop-item-category')[0].innerText, shopItem.getElementsByClassName('shop-item-deparment')[0].innerText, shopItem.getElementsByClassName('shop-item-price')[0].innerText, shopItem.getElementsByClassName('shop-item-stock')[0].innerText];
+  console.log(item);
   addItemToCart(item);
   updateCarTotal();
 }
@@ -19373,7 +19374,7 @@ function addItemToCart(item) {
     }
   }
 
-  var cartRowContents = "\n        <div class=\"cart-item cart-column\">\n            <span class=\"cart-item-title\">".concat(item[0], "</span>\n        </div>\n        <span class=\"cart-price cart-column\">").concat(item[3], "</span>\n        <div class=\"cart-quantity cart-column\">\n            <input class=\"cart-quantity-input\" type=\"number\" value=\"1\">\n            <button class=\"btn btn-danger\" type=\"button\">REMOVE</button>\n        </div>\n        </div>");
+  var cartRowContents = "\n        <div class=\"cart-item cart-column\">\n            <span class=\"cart-item-title\">".concat(item[1], "</span>\n        </div>\n        <span class=\"cart-price cart-column\">").concat(item[5], "</span>\n        <div class=\"cart-quantity cart-column\">\n            <input class=\"cart-quantity-input\" type=\"number\" value=\"1\" max=\"").concat(item[6], "\" >\n            <button class=\"btn btn-danger\" type=\"button\">REMOVE</button>\n        </div>\n        </div>");
   cartRow.innerHTML = cartRowContents;
   cartItems.append(cartRow);
   cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
@@ -19399,7 +19400,7 @@ function removeCartItem(event) {
 function updateCarTotal() {
   var cartItemContainer = document.getElementsByClassName('cart-items')[0];
   var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-  var total = 0;
+  var subtotal = 0;
 
   for (var i = 0; i < cartRows.length; i++) {
     var cartRow = cartRows[i];
@@ -19407,9 +19408,12 @@ function updateCarTotal() {
     var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
     var price = parseFloat(priceElement.innerText.replace('$', ''));
     var quantity = quantityElement.value;
-    total = total + price * quantity;
+    subtotal = subtotal + price * quantity;
   }
 
+  subtotal = Math.round(subtotal * 100) / 100;
+  document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal;
+  var total = subtotal + subtotal * 0.16;
   total = Math.round(total * 100) / 100;
   document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
 }
@@ -19465,8 +19469,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\YBRIONES\Desktop\Admedic\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\YBRIONES\Desktop\Admedic\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/argott/www/laravel_ps/admedicTest/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/argott/www/laravel_ps/admedicTest/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

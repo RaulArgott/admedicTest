@@ -9,9 +9,8 @@ tfoot input {
 .myDiv {
     width: 99%;
     height: 90%;
-    border: 5px outset red;
-    //background-color: lightblue;
-    background-image: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg");
+    //border: 5px outset red;
+    background-color: #D4F8F1;
     text-align: center;
   }
   .myDiv1 {
@@ -24,10 +23,19 @@ tfoot input {
   }
   .myDiv2 {
     position: absolute;
-    top: 0px;
+    top: 80px;
     //right: -110;
     left: 75%;
     width: 20%;
-    height: 90%;
+    height: 88%;
+    //border: 3px solid #73AD21;
+  }
+
+  .myDiv3 {
+    position: relative;
+    //right: -110;
+    width: 99%;
+    height: 10%;
+    background-color: #0EE0EE ;
     //border: 3px solid #73AD21;
   }

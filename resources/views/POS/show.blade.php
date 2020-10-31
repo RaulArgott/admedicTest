@@ -4,7 +4,10 @@
 <link rel="stylesheet" href="/css/app.css">
 <script src="/js/app.js"></script>
 
+<div class="myDiv3">
 <h1>Hola</h1>
+</div>
+
 <div class="myDiv">
 
 <div class="myDiv1">
@@ -31,9 +34,11 @@
     </tbody>
     <tfoot>
         <tr>
-            <th>name</th>
-            <th>code</th>
-            <th>add</th>
+            <th>Nombre</th>
+            <th>Codigo</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+            <th>Añadir</th>
         </tr>
     </tfoot>
 </table>
@@ -78,10 +83,6 @@
                 <button class="btn btn-danger" type="button">REMOVE</button>
             </div>
         </div>
-    </div>
-    <div class="cart-total">
-        <strong class="cart-total-title">Total</strong>
-        <span class="cart-total-price">$39.97</span>
     </div>
     <div class="cart-total">
         <strong class="cart-total-title">Total</strong>

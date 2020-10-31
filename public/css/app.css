@@ -7,8 +7,7 @@ tfoot input {
 .myDiv {
   width: 99%;
   height: 90%;
-  border: 5px outset red;
-  background-image: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg");
+  background-color: #D4F8F1;
   text-align: center;
 }
 
@@ -21,9 +20,16 @@ tfoot input {
 
 .myDiv2 {
   position: absolute;
-  top: 0px;
+  top: 80px;
   left: 75%;
   width: 20%;
-  height: 90%;
+  height: 88%;
+}
+
+.myDiv3 {
+  position: relative;
+  width: 99%;
+  height: 10%;
+  background-color: #0EE0EE;
 }
 

@@ -53,8 +53,10 @@ function addItemToCart(item){
             <button class="btn btn-danger" type="button">REMOVE</button>
         </div>
         </div>`
-        cartRow.innerHTML = cartRowContents
-        cartItems.append(cartRow)
+    cartRow.innerHTML = cartRowContents
+    cartItems.append(cartRow)
+    cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click',removeCartItem)
+    cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change',quanityChange)
 }
 
 function quanityChange(event){

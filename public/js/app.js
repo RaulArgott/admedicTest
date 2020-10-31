@@ -19376,6 +19376,8 @@ function addItemToCart(item) {
   var cartRowContents = "\n        <div class=\"cart-item cart-column\">\n            <span class=\"cart-item-title\">".concat(item[0], "</span>\n        </div>\n        <span class=\"cart-price cart-column\">").concat(item[3], "</span>\n        <div class=\"cart-quantity cart-column\">\n            <input class=\"cart-quantity-input\" type=\"number\" value=\"1\">\n            <button class=\"btn btn-danger\" type=\"button\">REMOVE</button>\n        </div>\n        </div>");
   cartRow.innerHTML = cartRowContents;
   cartItems.append(cartRow);
+  cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
+  cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quanityChange);
 }
 
 function quanityChange(event) {

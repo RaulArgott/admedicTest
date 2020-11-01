@@ -120,7 +120,8 @@ $(document).ready(function() {
             data: data,
             processData: false,
             success: function(msg ) {
-                console.log(msg);
+                alert("Compra realizada");
+                location.reload();
             },
             error: function(ts) { 
                 alert(ts.responseText); 

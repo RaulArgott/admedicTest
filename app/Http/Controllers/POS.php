@@ -12,21 +12,31 @@ class POS extends Controller
         $products = Product::where('stock','>','0')->get();
         return view('POS.show',compact('products'));
     }
+
     public function cart(Request $request){
-        /* if($request->product){
+        $totalQuantity = 0;
+        $iva = $request->subtotal * 0.16;
+        foreach($request->quantity as $q){
+            $totalQuantity = $totalQuantity + $q;
+        }
+        $sale = \App\Sale::create([
+            'total' => $request->total,
+            'subtotal' => $request->subtotal,
+            'iva' => $iva,
+            'quantity' => $totalQuantity
+        ]);
+        if($request->product){
             foreach ($request->product as $k => $product){
                 $p = \App\Product::find($product);
-                $p->stock = $p->stock - $request->stock[$product];
+                $p->stock = $p->stock - $request->quantity[$k];
                 $p->save();
                 \App\ProductSale::create([
                     'product_id' => $product,
-                    'quantity' => $request->stock[$product],
-                    'sale_id' => $data->id
+                    'quantity' => $request->quantity[$k],
+                    'sale_id' =>$sale->id
                 ]);
-
             }
-        } */
-        print_r(json_decode($request->getContent(),true));
-        return response()->json(["success"=>true,"data"=>$request->getContent()]);
+        }
+        return response()->json(["success"=>true,"data"=>$request->all()]);
     }
 }

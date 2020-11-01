@@ -123,7 +123,7 @@ $(document).ready(function() {
                 console.log(msg);
             },
             error: function(ts) { 
-                //alert(ts.responseText); 
+                alert(ts.responseText); 
             }    
         });
     });

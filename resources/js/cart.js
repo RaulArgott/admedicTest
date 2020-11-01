@@ -48,13 +48,13 @@ function addItemToCart(item){
         }
     }
     var cartRowContents =  `
-            <input class="cart-item-id" type="number" value="${item[0]}" hidden/>
+            <input name="product[]" class="cart-item-id" type="number" value="${item[0]}" hidden/>
             <div class="cart-item cart-column">
                 <span class="cart-item-title">${item[1]}</span>
             </div>
             <span class="cart-price cart-column">${item[5]}</span>
             <div class="cart-quantity cart-column">
-                <input class="cart-quantity-input" type="number" value="1" max="${item[6]}" >
+                <input name="quantity[]" class="cart-quantity-input" type="number" value="1" max="${item[6]}" >
                 <button class="btn btn-danger" type="button">REMOVE</button>
             </div>`
     cartRow.innerHTML = cartRowContents

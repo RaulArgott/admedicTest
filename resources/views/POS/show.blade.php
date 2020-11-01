@@ -94,19 +94,37 @@
 
 $(document).ready(function() {
     $("#cart-submit").click(function(e) {  
+        var products = $('input[name="product[]"]').map(function(){
+            return parseInt($(this).val());
+        }).get();
+        var quantities = $('input[name="quantity[]"]').map(function(){
+            return parseInt($(this).val());
+        }).get(); 
+        var total = $("#cart-total").val();
+        var subtotal = $("#cart-subtotal").val();
+        var data = JSON.stringify({            
+            product: Array.from(products),
+            quantity:Array.from(quantities),
+            total: parseFloat(total),
+            subtotal:parseFloat(subtotal)
+        });
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                'Content-Type': 'application/json'
             }
         });      
         $.ajax({
             url: "{{route('postCart')}}",
             type: "POST",
-            data: {"item_id" : "1" },
-            success: function( data ) {
-                location.reload();
+            data: data,
+            processData: false,
+            success: function(msg ) {
+                console.log(msg);
             },
-            error: function(ts) { alert(ts.responseText) }    
+            error: function(ts) { 
+                //alert(ts.responseText); 
+            }    
         });
     });
 });

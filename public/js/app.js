@@ -19374,7 +19374,7 @@ function addItemToCart(item) {
     }
   }
 
-  var cartRowContents = "\n            <input class=\"cart-item-id\" type=\"number\" value=\"".concat(item[0], "\" hidden/>\n            <div class=\"cart-item cart-column\">\n                <span class=\"cart-item-title\">").concat(item[1], "</span>\n            </div>\n            <span class=\"cart-price cart-column\">").concat(item[5], "</span>\n            <div class=\"cart-quantity cart-column\">\n                <input class=\"cart-quantity-input\" type=\"number\" value=\"1\" max=\"").concat(item[6], "\" >\n                <button class=\"btn btn-danger\" type=\"button\">REMOVE</button>\n            </div>");
+  var cartRowContents = "\n            <input name=\"product[]\" class=\"cart-item-id\" type=\"number\" value=\"".concat(item[0], "\" hidden/>\n            <div class=\"cart-item cart-column\">\n                <span class=\"cart-item-title\">").concat(item[1], "</span>\n            </div>\n            <span class=\"cart-price cart-column\">").concat(item[5], "</span>\n            <div class=\"cart-quantity cart-column\">\n                <input name=\"quantity[]\" class=\"cart-quantity-input\" type=\"number\" value=\"1\" max=\"").concat(item[6], "\" >\n                <button class=\"btn btn-danger\" type=\"button\">REMOVE</button>\n            </div>");
   cartRow.innerHTML = cartRowContents;
   cartItems.append(cartRow);
   cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
